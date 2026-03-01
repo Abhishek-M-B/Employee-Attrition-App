@@ -9,7 +9,6 @@ from pathlib import Path
 # ─── Page Config ────────────────────────────────────────────────────────────
 st.set_page_config(
     page_title="AttritionIQ · HR Intelligence",
-    page_icon="🧠",
     layout="wide",
     initial_sidebar_state="expanded"
 )
