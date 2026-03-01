@@ -4,6 +4,8 @@
 
 ---
 
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit)](https://employee-attrition-app-px2p4nfnfp6u4mycar32wu.streamlit.app/)
+
 ## 📌 Table of Contents
 
 - [Project Overview](#-project-overview)
