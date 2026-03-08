@@ -228,7 +228,7 @@ To **stop** the app, press `Ctrl + C` in the terminal.
 
 ## 👨‍💻 Author
 
-Built by **Abhishek** as part of a Data Science & ML project on Employee Attrition Prediction.
+Built by **Abhishek M B** as part of a Data Science & ML project on Employee Attrition Prediction.
 
 ---
 
