@@ -105,7 +105,7 @@ h1, h2, h3 {
     margin-bottom: 0.5rem;
 }
 
-/* ── GLOBAL: force all text/labels to be bright white ── */
+/* GLOBAL: force all text/labels to be bright white */
 label, p, span, div {
     color: #F1F5F9;
 }
@@ -115,7 +115,7 @@ label, p, span, div {
     color: #F1F5F9 !important;
 }
 
-/* Every widget label (slider, selectbox, radio, number input) */
+/* Every widget label */
 [data-testid="stWidgetLabel"] > div > p,
 [data-testid="stWidgetLabel"] p,
 .stSlider label, .stSelectbox label,
@@ -147,12 +147,126 @@ label, p, span, div {
     color: #FFFFFF !important;
     border-radius: 8px !important;
 }
+
 /* Selectbox selected text */
 [data-baseweb="select"] span,
 [data-baseweb="select"] div {
     color: #FFFFFF !important;
     font-size: 0.95rem !important;
 }
+
+/* ════════════════════════════════════════
+   DROPDOWN POPOVER — FLAT / SHARP STYLE
+   ════════════════════════════════════════ */
+
+/* Outer popover wrapper — no rounding */
+[data-baseweb="popover"],
+[data-baseweb="popover"] > div,
+[data-baseweb="popover"] > div > div {
+    background-color: #1E293B !important;
+    border-radius: 0px !important;
+}
+
+/* The menu/list container — sharp rectangle with blue border */
+[data-baseweb="menu"],
+ul[data-baseweb="menu"],
+div[role="listbox"],
+div[role="listbox"] > div {
+    background-color: #1E293B !important;
+    border: 1.5px solid #3B82F6 !important;
+    border-radius: 0px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+    padding: 0px !important;
+}
+
+/* Every option/list item — flat rows with divider */
+li[role="option"],
+div[role="option"],
+[data-baseweb="menu"] li,
+[data-baseweb="option"] {
+    background-color: #1E293B !important;
+    color: #F1F5F9 !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    border-radius: 0px !important;
+    margin: 0px !important;
+    border-bottom: 1px solid #273548 !important;
+    padding: 0.55rem 1rem !important;
+}
+
+/* No bottom border on last item */
+li[role="option"]:last-child,
+div[role="option"]:last-child {
+    border-bottom: none !important;
+}
+
+/* Text inside each option */
+li[role="option"] span,
+li[role="option"] div,
+div[role="option"] span,
+div[role="option"] div,
+[data-baseweb="option"] span,
+[data-baseweb="option"] div {
+    color: #F1F5F9 !important;
+    background-color: transparent !important;
+}
+
+/* Hover state */
+li[role="option"]:hover,
+div[role="option"]:hover,
+[data-baseweb="menu"] li:hover,
+[data-baseweb="option"]:hover {
+    background-color: #2563EB !important;
+    color: #FFFFFF !important;
+    cursor: pointer !important;
+}
+
+li[role="option"]:hover span,
+li[role="option"]:hover div,
+div[role="option"]:hover span,
+div[role="option"]:hover div {
+    color: #FFFFFF !important;
+}
+
+/* Selected / active option */
+li[role="option"][aria-selected="true"],
+div[role="option"][aria-selected="true"],
+[data-baseweb="option"][aria-selected="true"] {
+    background-color: #1D4ED8 !important;
+    color: #FFFFFF !important;
+}
+
+li[role="option"][aria-selected="true"] span,
+li[role="option"][aria-selected="true"] div,
+div[role="option"][aria-selected="true"] span,
+div[role="option"][aria-selected="true"] div {
+    color: #FFFFFF !important;
+}
+
+/* Keyboard nav highlighted option */
+li[role="option"][data-highlighted="true"],
+div[role="option"][data-highlighted="true"] {
+    background-color: #1E40AF !important;
+    color: #FFFFFF !important;
+}
+
+/* Scrollbar inside dropdown */
+[data-baseweb="menu"] ::-webkit-scrollbar { width: 4px; }
+[data-baseweb="menu"] ::-webkit-scrollbar-track { background: #1E293B; }
+[data-baseweb="menu"] ::-webkit-scrollbar-thumb { background: #3B82F6; border-radius: 0px; }
+
+/* Extra Streamlit-specific listbox overrides */
+div[data-testid="stSelectbox"] div[role="listbox"] {
+    background-color: #1E293B !important;
+    border-radius: 0px !important;
+}
+div[data-testid="stSelectbox"] div[role="listbox"] div,
+div[data-testid="stSelectbox"] div[role="listbox"] span {
+    background-color: transparent !important;
+    color: #F1F5F9 !important;
+}
+
+/* ════════════════════════════════════════ */
 
 /* Number input box */
 [data-testid="stNumberInput"] > div > div > input {
@@ -325,11 +439,10 @@ with tab1:
             c8, c9 = st.columns(2)
             with c8:
                 years_at_company = st.slider("Years at Company", 0, 40, 5, key="yac")
-                # Auto-calculate tenure in months from years
                 tenure_months = years_at_company * 12
                 st.caption(f"📅 Tenure auto-set to **{tenure_months} months**")
             with c9:
-                promotions = st.slider("# of Promotions", 0, 10, 1, key="promo")
+                promotions = st.slider("# Promotions", 0, 10, 1, key="promo")
 
             c11, c12 = st.columns(2)
             with c11:
@@ -398,13 +511,10 @@ with tab1:
 
         if predict_btn or "last_prob" in st.session_state:
             if predict_btn:
-                # Feature engineering (mirrors training)
                 import math
                 log_income = math.log1p(monthly_income)
                 promo_rate = promotions / years_at_company if years_at_company > 0 else 0
                 high_perf_no_promo = 1 if (perf_rating == "High" and promotions == 0) else 0
-
-                # We'll use a placeholder for Income_vs_Role_Avg (1.0 = average)
                 income_vs_role_avg = 1.0
 
                 input_data = pd.DataFrame([{
@@ -438,7 +548,6 @@ with tab1:
                 if model_loaded:
                     prob = pipeline.predict_proba(input_data)[0][1]
                 else:
-                    # Demo mode: heuristic simulation
                     risk_score = 0.3
                     if overtime == "Yes": risk_score += 0.15
                     if wlb in ["Poor", "Fair"]: risk_score += 0.1
@@ -456,7 +565,6 @@ with tab1:
             will_leave = prob >= threshold_val
             pct = prob * 100
 
-            # Risk badge
             if will_leave:
                 st.markdown(f"""
                 <div class="risk-high">
@@ -476,7 +584,6 @@ with tab1:
 
             st.markdown("<br>", unsafe_allow_html=True)
 
-            # Gauge chart
             fig_gauge = go.Figure(go.Indicator(
                 mode="gauge+number",
                 value=pct,
@@ -506,7 +613,6 @@ with tab1:
             )
             st.plotly_chart(fig_gauge, use_container_width=True)
 
-            # Key factors summary
             st.markdown("**📌 Key Risk Factors Detected:**")
             factors = []
             if overtime == "Yes": factors.append("🔴 Working overtime")
@@ -523,7 +629,6 @@ with tab1:
             else:
                 st.markdown("✅ No major risk signals detected.")
 
-            # Threshold info
             st.caption(f"Model threshold: {threshold_val:.2f} | Probability: {pct:.1f}%")
 
         else:
@@ -544,7 +649,6 @@ with tab1:
 with tab2:
     st.markdown("<p class='section-label'>Workforce Analytics Overview</p>", unsafe_allow_html=True)
 
-    # Generate sample/demo data for the dashboard
     np.random.seed(42)
     n = 400
     demo_df = pd.DataFrame({
@@ -560,7 +664,6 @@ with tab2:
         "Attrition": np.random.choice([0, 1], n, p=[0.72, 0.28]),
     })
 
-    # Override attrition to be correlated
     demo_df.loc[(demo_df["Overtime"] == "Yes") & (demo_df["Work-Life Balance"].isin(["Poor", "Fair"])), "Attrition"] = \
         np.random.choice([0, 1], sum((demo_df["Overtime"] == "Yes") & (demo_df["Work-Life Balance"].isin(["Poor", "Fair"]))), p=[0.4, 0.6])
 
