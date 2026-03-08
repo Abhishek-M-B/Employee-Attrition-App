@@ -126,9 +126,9 @@ This may take **3–5 minutes** depending on your internet speed.
 Copy your three `.pkl` files into the project root (same folder as `app.py`):
 ```
 Attrition_ML_Project/
-├── attrition_pipeline.pkl   ✅ here
-├── best_threshold.pkl        ✅ here
-├── feature_names.pkl         ✅ here
+├── attrition_pipeline.pkl   
+├── best_threshold.pkl        
+├── feature_names.pkl         
 └── app.py
 ```
 
@@ -249,15 +249,11 @@ streamlit run app.py --server.port 8502
 
 4. Click **"Deploy"** 🚀
 
-> ⚠️ If your `.pkl` files are large (>100MB), use [Streamlit Secrets](https://docs.streamlit.io/streamlit-community-cloud/deploy-your-app/secrets-management) or host them on Google Drive / HuggingFace Hub.
-
 ---
 
 ## 🎬 Demo
 
 https://github.com/user-attachments/assets/your-demo-video-id
-
-> 📽️ To add your demo video: Go to your GitHub repo → Click **Issues** → drag and drop your `demo.mp4` → copy the generated link → paste it above replacing `your-demo-video-id`
 
 ---
 
@@ -267,4 +263,4 @@ Built by **Abhishek** as part of a Data Science & ML project on Employee Attriti
 
 ---
 
-*Made with ❤️ using Python, Streamlit, XGBoost, and Plotly*
+
