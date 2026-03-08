@@ -253,7 +253,7 @@ streamlit run app.py --server.port 8502
 
 ## 🎬 Demo
 
-https://github.com/user-attachments/assets/your-demo-video-id
+![AttritionIQ Demo](static/attrition_demo_video.gif)
 
 ---
 
