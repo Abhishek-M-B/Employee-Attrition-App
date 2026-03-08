@@ -200,6 +200,15 @@ with tab1:
 
                 st.session_state["last_prob"] = prob
                 st.session_state["last_threshold"] = THRESHOLD
+                st.session_state["last_overtime"] = overtime
+                st.session_state["last_wlb"] = wlb
+                st.session_state["last_job_sat"] = job_sat
+                st.session_state["last_emp_recognition"] = emp_recognition
+                st.session_state["last_remote_work"] = remote_work
+                st.session_state["last_promo_rate"] = promo_rate
+                st.session_state["last_years_at_company"] = years_at_company
+                st.session_state["last_perf_rating"] = perf_rating
+                st.session_state["last_promotions"] = promotions
 
             prob = st.session_state["last_prob"]
             threshold_val = st.session_state["last_threshold"]
@@ -238,13 +247,22 @@ with tab1:
 
             st.markdown("**📌 Key Risk Factors Detected:**")
             factors = []
-            if overtime == "Yes": factors.append("🔴 Working overtime")
-            if wlb in ["Poor", "Fair"]: factors.append("🔴 Poor work-life balance")
-            if job_sat in ["Low", "Medium"]: factors.append("🟡 Low job satisfaction")
-            if emp_recognition == "Low": factors.append("🟡 Lack of recognition")
-            if remote_work == "No": factors.append("🟡 No remote work")
-            if promo_rate == 0 and years_at_company > 3: factors.append("🔴 No promotions in 3+ years")
-            if perf_rating == "High" and promotions == 0: factors.append("🔴 High performer, no promotion")
+            _overtime = st.session_state.get("last_overtime", overtime)
+            _wlb = st.session_state.get("last_wlb", wlb)
+            _job_sat = st.session_state.get("last_job_sat", job_sat)
+            _emp_recognition = st.session_state.get("last_emp_recognition", emp_recognition)
+            _remote_work = st.session_state.get("last_remote_work", remote_work)
+            _promo_rate = st.session_state.get("last_promo_rate", 0)
+            _years_at_company = st.session_state.get("last_years_at_company", years_at_company)
+            _perf_rating = st.session_state.get("last_perf_rating", perf_rating)
+            _promotions = st.session_state.get("last_promotions", promotions)
+            if _overtime == "Yes": factors.append("🔴 Working overtime")
+            if _wlb in ["Poor", "Fair"]: factors.append("🔴 Poor work-life balance")
+            if _job_sat in ["Low", "Medium"]: factors.append("🟡 Low job satisfaction")
+            if _emp_recognition == "Low": factors.append("🟡 Lack of recognition")
+            if _remote_work == "No": factors.append("🟡 No remote work")
+            if _promo_rate == 0 and _years_at_company > 3: factors.append("🔴 No promotions in 3+ years")
+            if _perf_rating == "High" and _promotions == 0: factors.append("🔴 High performer, no promotion")
 
             for f in factors if factors else ["✅ No major risk signals detected."]:
                 st.markdown(f"- {f}" if factors else f)
