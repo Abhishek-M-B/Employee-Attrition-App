@@ -201,37 +201,6 @@ To **stop** the app, press `Ctrl + C` in the terminal.
 
 ---
 
-## 🛠️ Troubleshooting
-
-### `streamlit: command not found`
-Your venv may not be active. Run:
-```powershell
-attrition_env\Scripts\activate
-```
-
-### `ModuleNotFoundError: No module named 'xgboost'`
-Packages weren't installed in the venv. Make sure `(attrition_env)` is active, then:
-```powershell
-pip install xgboost
-```
-
-### App shows "⚠️ Model files not found"
-The `.pkl` files are not in the right place. Make sure all three pickle files are in the **same folder as `app.py`**, not inside `attrition_env/`.
-
-### `KeyboardInterrupt` during venv creation
-Use the `--without-pip` flag:
-```powershell
-python -m venv attrition_env --without-pip
-python -m ensurepip --upgrade
-```
-
-### Port 8501 already in use
-```powershell
-streamlit run app.py --server.port 8502
-```
-
----
-
 ## ☁️ Deployment to Streamlit Cloud (Free)
 
 1. Push your project to a **public GitHub repository**
