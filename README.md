@@ -18,6 +18,7 @@
 - [Model Details](#-model-details)
 - [Troubleshooting](#-troubleshooting)
 - [Deployment to Streamlit Cloud](#-deployment-to-streamlit-cloud)
+- [Demo](#-demo)
 
 ---
 
@@ -55,6 +56,12 @@ The model was trained on employee data with 25+ features covering personal info,
 
 ```
 Attrition_ML_Project/
+│
+├── notebooks/
+│   └── EmployeAttrition_MLproject_Final.ipynb   ← Full ML training notebook
+│
+├── static/
+│   └── demo.mp4                                  ← App demo video
 │
 ├── attrition_env/                  ← Virtual environment (auto-created, don't edit)
 │
@@ -243,6 +250,14 @@ streamlit run app.py --server.port 8502
 4. Click **"Deploy"** 🚀
 
 > ⚠️ If your `.pkl` files are large (>100MB), use [Streamlit Secrets](https://docs.streamlit.io/streamlit-community-cloud/deploy-your-app/secrets-management) or host them on Google Drive / HuggingFace Hub.
+
+---
+
+## 🎬 Demo
+
+https://github.com/user-attachments/assets/your-demo-video-id
+
+> 📽️ To add your demo video: Go to your GitHub repo → Click **Issues** → drag and drop your `demo.mp4` → copy the generated link → paste it above replacing `your-demo-video-id`
 
 ---
 
